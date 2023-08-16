@@ -70,3 +70,12 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :development do
+  gem 'rubocop', require: false
+end
+
+# このGemはデータベースがPostgreSQLの際に必要なGem
+group :production do
+  gem 'pg' 
+end
