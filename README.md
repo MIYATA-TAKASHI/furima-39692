@@ -1,26 +1,26 @@
-**Users（ユーザー情報）テーブル**
+**users**
 
 | Column             | Type       | Options                  |
 |--------------------|------------|--------------------------|
 | nickname           | string     | null: false              |
-| email              | string     | unique: true             |
+| email              | string     | null: false,unique: true |
 | encrypted_password | string     | unique: true             |
 | last_name          | string     | null: false              |
 | first_name         | string     | null: false              |
 | kana_last_name     | string     | null: false              |
 | kana_first_name    | string     | null: false              |
-| birthdate_id       | date       | foreign_key: true        |
+| birthdate          | date       | null: false              |
 
 **Association**
 
 - has_many :items
 - has_many :purchases
 
-**Items（商品情報）テーブル**
+**items**
 
 | Column                 | Type       | Options                              |
 |------------------------|------------|--------------------------------------|
-| nickname               | references | null: false                          |
+| nickname               | references | foreign_key: true                    |
 | name                   | string     | null: false                          |
 | category_id            | integer    | null: false                          |
 | description            | text       | null: false                          |
@@ -28,35 +28,36 @@
 | status_id              | integer    | null: false                          |
 | delivery_fee_burden_id | integer    | null: false                          |
 | shipping_origin_id     | integer    | null: false                          |
-| days_until_shipping_id | integer    | null: false                          |
+| day_until_shipping_id  | integer    | null: false                          |
 
 **Association**
 
 - belongs_to :user
-- has_one :purchases
+- has_one :purchase
 
-**Purchases（購入記録）テーブル**
+**purchaseses**
 
-| Column       | Type       | Options                  |
-|--------------|------------|--------------------------|
-| user         | references | foreign_key: true        |
-| item         | references | foreign_key: true        |
+| Column       | Type       | Options                              |
+|--------------|------------|--------------------------------------|
+| user         | references | null: false,foreign_key: true        |
+| item         | references | null: false,foreign_key: true        |
 
 **Association**
 
 - belongs_to :user
 - belongs_to :item
+- has_one :shipping_info
 
-**ShippingInfo（発送先情報）テーブル**
+**shippingInfos**
 
 | Column          | Type       | Options                              |
 |-----------------|------------|--------------------------------------|
-| purchase        | references | null: false                          |
+| purchase        | references | null: false,foreign_key: true        |
 | postal_code     | string     | null: false                          |
 | prefecture_id   | integer    | null: false                          |
 | city            | string     | null: false                          |
 | address         | string     | null: false                          |
-| building        | string     | null: false                          |
+| building        | string     |                                      |
 | phone_number    | string     | null: false                          |
 
 **Association**
@@ -69,7 +70,7 @@
 補足
 ---
 
-**Users（ユーザー情報）テーブル:**
+**users（ユーザー情報）テーブル:**
 
 - nickname (string): ユーザーのニックネーム
 - mail (string): ユーザーのメールアドレス
@@ -78,9 +79,9 @@
 - first_name (string): ユーザーの名（全角漢字）
 - kana_last_name (string): ユーザーの姓のカナ表記（全角カナ）
 - kana_first_name (string): ユーザーの名のカナ表記（全角カナ）
-- birthdate_id (integer): ユーザーの生年月日
+- birthdate (integer): ユーザーの生年月日
 
-**Items（商品情報）テーブル:**
+**items（商品情報）テーブル:**
 
 - nickname (string): 出品者（ユーザーのニックネーム）
 - name (string): 商品名
@@ -93,12 +94,12 @@
 - days_until_shipping_id (integer): 発送までの日数
 
 
-**Purchases（購入記録）テーブル:**
+**Purchaseses（購入記録）テーブル:**
 
 - user (integer): 購入者（ユーザー）のID
 - item (integer): 購入された商品のID
 
-**ShippingInfo（発送先情報）テーブル:**
+**Shipping_Infos（発送先情報）テーブル:**
 
 - purchase_id (integer): 購入記録のID
 - postal_code (string): 郵便番号
