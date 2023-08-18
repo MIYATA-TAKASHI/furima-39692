@@ -20,14 +20,14 @@
 
 | Column                 | Type       | Options                              |
 |------------------------|------------|--------------------------------------|
-| nickname               | references | foreign_key: true                    |
+| user                   | references | null: false,foreign_key: true        |
 | name                   | string     | null: false                          |
 | category_id            | integer    | null: false                          |
 | description            | text       | null: false                          |
 | price                  | integer    | null: false                          |
 | status_id              | integer    | null: false                          |
 | delivery_fee_burden_id | integer    | null: false                          |
-| shipping_origin_id     | integer    | null: false                          |
+| prefecture_id          | integer    | null: false                          |
 | day_until_shipping_id  | integer    | null: false                          |
 
 **Association**
@@ -48,7 +48,7 @@
 - belongs_to :item
 - has_one :shipping_info
 
-**shippingInfos**
+**shipping_Infos**
 
 | Column          | Type       | Options                              |
 |-----------------|------------|--------------------------------------|
