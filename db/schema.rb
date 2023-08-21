@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_102015) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_21_024744) do
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -19,7 +19,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_102015) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "kana_last_name"
+    t.string "kana_first_name"
+    t.date "birthdate"
+    t.index ["birthdate"], name: "index_users_on_birthdate"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["first_name"], name: "index_users_on_first_name"
+    t.index ["kana_first_name"], name: "index_users_on_kana_first_name"
+    t.index ["kana_last_name"], name: "index_users_on_kana_last_name"
+    t.index ["last_name"], name: "index_users_on_last_name"
+    t.index ["nickname"], name: "index_users_on_nickname"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
