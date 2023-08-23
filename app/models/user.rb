@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validate :password_complexity
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "は有効なメールアドレスである必要があります" }
+
 
   validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
   validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
