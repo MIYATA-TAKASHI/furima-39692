@@ -2,11 +2,12 @@ FactoryBot.define do
   factory :user do
     nickname { 'テストユーザー' }
     email { Faker::Internet.email }
-    password { 'password123' }
-    last_name { '山田' }
-    first_name { '太郎' }
-    kana_last_name { 'ヤマダ' }
-    kana_first_name { 'タロウ' }
+    password { Faker::Internet.password(min_length: 6) }
+    password_confirmation {password}
+    last_name { Faker::Name.last_name }
+    first_name { Faker::Name.first_name }
+    kana_last_name { Faker::Name.kana_last_name }
+    kana_first_name { Faker::Name.kana_first_name }
     birthdate { Date.new(1990, 1, 1) }
 
     trait :invalid_nickname do
