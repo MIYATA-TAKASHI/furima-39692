@@ -14,6 +14,10 @@ class User < ApplicationRecord
   validates :kana_first_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :birthdate, presence: true
 
+
+  has_many :items
+  has_many :purchases
+
   private
 
   def password_complexity
