@@ -133,6 +133,16 @@
         <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
+          <%# 以下追記コード %>
+            <% if @item.present? %>
+              <div class="item-details">
+                <h2><%= @item.name %></h2>
+                <p><%= @item.description %></p>
+                <p>Category: <%= @item.category.name %></p>
+                <p>Price: <%= number_to_currency(@item.price) %></p>
+                <!-- 他の詳細情報もここに追加 -->
+              </div>
+
 
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
