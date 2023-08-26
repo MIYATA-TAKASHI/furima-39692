@@ -28,7 +28,7 @@
 | status_id              | integer    | null: false                          |
 | delivery_fee_burden_id | integer    | null: false                          |
 | prefecture_id          | integer    | null: false                          |
-| day_until_shipping_id  | integer    | null: false                          |
+| days_until_shipping_id  | integer    | null: false                          |
 
 **Association**
 
@@ -90,7 +90,6 @@
 - price (integer): 商品の価格
 - status_id (integer): 商品の状態
 - delivery_fee_burden_id (integer): 配送料の負担 
-- shipping_origin_id (integer): 発送元
 - days_until_shipping_id (integer): 発送までの日数
 
 
