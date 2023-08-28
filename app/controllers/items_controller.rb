@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build(item_params)
     if @item.save
-      # redirect_to root_path, notice: '商品が出品されました。'
+      redirect_to root_path, notice: '商品が出品されました。'
     else
       render :new
     end
@@ -26,5 +26,3 @@ class ItemsController < ApplicationController
                                  :days_until_shipping_id, :image).merge(user_id: current_user.id)
   end
 end
-# name", "category_id", "description", "price", "status_id", "delivery_fee_burden_id", 
-# "prefecture_id", "days_until_shipping_id", "created_at", "updated_at

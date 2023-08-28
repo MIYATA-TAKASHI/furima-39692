@@ -1,4 +1,4 @@
-FactoryBot.define do   # ここの名前はカラム名
+FactoryBot.define do
   factory :item do
     association :user
     name { 'テスト商品' }
@@ -10,5 +10,9 @@ FactoryBot.define do   # ここの名前はカラム名
     days_until_shipping_id { 1 }
     prefecture_id { 1 }
 
+    after(:build) do |item|
+      image_path = Rails.root.join('app', 'assets', 'images', 'test_image.png')
+      item.image.attach(io: File.open(image_path), filename: 'test_image.png')
+    end
   end
 end

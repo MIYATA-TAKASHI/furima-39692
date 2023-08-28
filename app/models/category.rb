@@ -1,6 +1,6 @@
 class Category < ActiveHash::Base
   # class Classification < ActiveHash::Base 変更の情報
-  
+
   self.data = [
     { id: 1, name: '---' },  # 修正点: id: 1 の name を '---' に変更
     { id: 2, name: 'メンズ' },
