@@ -29,19 +29,19 @@ RSpec.describe User, type: :model do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'メールアドレスに@を含まない場合は登録できない' do
         @user.email = 'testexample.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
       it '姓（全角）に半角文字が含まれていると登録できない' do
         @user.last_name = '山田a'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'first_nameが正しいフォーマットでなければ登録できない' do
@@ -93,7 +93,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードが6文字未満では登録できない' do
-        @user.password = 'Pass1'  
+        @user.password = 'Pass1'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
