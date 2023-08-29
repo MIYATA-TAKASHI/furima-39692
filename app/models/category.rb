@@ -1,8 +1,7 @@
 class Category < ActiveHash::Base
-  # class Classification < ActiveHash::Base 変更の情報
 
   self.data = [
-    { id: 1, name: '---' },  # 修正点: id: 1 の name を '---' に変更
+    { id: 1, name: '---' },
     { id: 2, name: 'メンズ' },
     { id: 3, name: 'レディース' },
     { id: 4, name: 'ベビー・キッズ' },
@@ -12,9 +11,9 @@ class Category < ActiveHash::Base
     { id: 8, name: '家電・スマホ・カメラ' },
     { id: 9, name: 'スポーツ・レジャー' },
     { id: 10, name: 'ハンドメイド' },
-    { id: 11, name: 'その他' }  # 修正点: id を 11 に変更
+    { id: 11, name: 'その他' }
   ]
 
   include ActiveHash::Associations
-  has_many :articles
+  has_many :items
 end
