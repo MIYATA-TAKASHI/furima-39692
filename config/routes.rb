@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'registrations' }
-  resources :items, only: [:index, :new, :create]
- 
-  # ユーザーのプロフィール表示
-  get '/users/:id', to: 'users#show', as: :user
-
+  devise_for :users
   root to: "items#index"
+  resources :items do
+    resources :orders, only: [:index, :create]
+  end
 end

@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :status
 
+
   validates :name, presence: true
   validates :description, presence: true
   validates :category_id, numericality: { other_than: 1 }
