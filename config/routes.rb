@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
+  resources :items, only: [:index, :new, :create]
+
   root to: "items#index"
-  resources :items do
-    resources :orders, only: [:index, :create]
-  end
 end
