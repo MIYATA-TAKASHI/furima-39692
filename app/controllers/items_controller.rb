@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new] 
-
-  def index
-  end
+  before_action :authenticate_user!, only: [:new]
 
   def new
     @item = Item.new
+  end
+
+  def index
+    @items = Item.order(created_at: :desc)
   end
 
   # def show
