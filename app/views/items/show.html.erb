@@ -23,18 +23,20 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
-      <% if @item.user == current_user && @item.status == '出品中' %>
-        <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除", item_path(@item), method: :delete, class: "item-destroy" %>
-      <% elsif @item.user != current_user && @item.status == '出品中' %>
-        <%= link_to "購入画面に進む", new_purchase_path(item_id: @item.id), class: "item-red-btn" %>
-      <% end %>
-    <% end %>
+    <% if @item.purchase == nil && user_signed_in? %>
+  <%# ログインユーザーが出品した商品には編集・削除ボタンが表示される %>
+  <% if current_user.id == @item.user.id %>
+    <%= link_to "商品の編集", edit_item_path(@item), data: {method: :get, turbo: false}, class: "item-red-btn" %>
+    <p class="or-text">or</p>
+    <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
+  <%# 出品者本人以外には購入ボタンを表示する %>
+  <% else %>
+    <%= link_to "購入画面に進む", item_purchases_path(@item), data: {turbo: false}, class:"item-red-btn"%>
+  <% end %>
+<% end %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.description %></span>
     </div>
     <table class="detail-table">
       <tbody>
