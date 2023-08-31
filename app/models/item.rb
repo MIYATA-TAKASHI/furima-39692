@@ -15,8 +15,9 @@ class Item < ApplicationRecord
   validates :status_id, numericality: { other_than: 1 }
   validates :delivery_fee_burden_id,  numericality: { other_than: 1 }
   validates :prefecture_id, numericality: { other_than: 1 }
-  validates :days_until_shipping_id,  numericality: { other_than: 1 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
+  validates :days_until_shipping_id, numericality: { other_than: 1 }
+  validates :price, presence: true,
+                    numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
 
-  validates :image, presence: true 
+  validates :image, presence: true
 end
