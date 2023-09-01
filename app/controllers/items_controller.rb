@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
@@ -59,12 +58,12 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
-      :name, 
-      :description, 
-      :category_id, 
-      :price, 
-      :status_id, 
-      :delivery_fee_burden_id, 
+      :name,
+      :description,
+      :category_id,
+      :price,
+      :status_id,
+      :delivery_fee_burden_id,
       :prefecture_id,
       :days_until_shipping_id, :image
     ).merge(user_id: current_user.id)
