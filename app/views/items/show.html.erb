@@ -26,8 +26,7 @@
     <% if @item.purchase == nil && user_signed_in? %>
   <%# ログインユーザーが出品した商品には編集・削除ボタンが表示される %>
   <% if current_user.id == @item.user.id %>
-    <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-    <%# <%= link_to "商品の編集", edit_item_path(@item), data: {method: :get, turbo: false}, class: "item-red-btn" %>
+    <%= link_to "商品の編集", edit_item_path(@item), data: {method: :get, turbo: false}, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
     <%# <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
