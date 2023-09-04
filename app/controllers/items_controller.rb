@@ -11,15 +11,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.purchase != nil || (user_signed_in? && current_user.id != @item.user.id)
-      redirect_to root_path
-    end
+    return unless !@item.purchase.nil? || (user_signed_in? && current_user.id != @item.user.id)
+
+    redirect_to root_path
   end
 
   def destroy
-    if @item.order == nil || (user_signed_in? && current_user.id == @item.user.id)
-      @item.destroy
-    end
+    @item.destroy if @item.order.nil? || (user_signed_in? && current_user.id == @item.user.id)
     redirect_to root_path
   end
 
