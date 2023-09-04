@@ -1,4 +1,4 @@
-function cardPayment() {
+const pay = () => {
   const publicKey = gon.public_key;
   const payjp = Payjp(publicKey);
   const elements = payjp.elements();
@@ -17,7 +17,8 @@ function cardPayment() {
       if (response.error) {
         ;
       } else {
-        const token = response.id; // トークン取得
+        const token = response.id; 
+        console.log(token)
         const tokenObj = `<input value=${token} name="token" type="hidden">`;
         form.insertAdjacentHTML("beforeend", tokenObj); // トークン情報を持ったオブジェクトをフォームに追加
       }
@@ -29,5 +30,4 @@ function cardPayment() {
     e.preventDefault();
   });
 };
-
-window.addEventListener('load', cardPayment);
+window.addEventListener("turbo:load", pay);

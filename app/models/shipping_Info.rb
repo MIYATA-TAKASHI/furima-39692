@@ -1,4 +1,4 @@
-class Delivery < ApplicationRecord
+class ShippingInfo < ApplicationRecord
   belongs_to :purchase
   
   extend ActiveHash::Associations::ActiveRecordExtensions

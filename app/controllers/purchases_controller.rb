@@ -9,10 +9,10 @@ class PurchasesController < ApplicationController
   end
   
   def create
-    @purchase_shipping = PurchaseShippingInfo.new(purchase_params)
-    if @purchase_shipping.valid?
+    @purchase_shipping_info = PurchaseShippingInfo.new(purchase_params)
+    if @purchase_shipping_info.valid?
       pay_item
-      @purchase_shipping.save
+      @purchase_shipping_info.save
       redirect_to root_path
     else
       render :index, status: :unprocessable_entity
@@ -43,10 +43,10 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.require(:purchase_shipping_info).permit(
-      :post_code,
+      :postal_code,
       :prefecture_id,
       :city,
-      :house_number,
+      :address,
       :building,
       :phone_number
     ).merge(item_id: @item.id, user_id: current_user.id, token: params[:token])
