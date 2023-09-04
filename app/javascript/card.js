@@ -6,7 +6,7 @@ const pay = () => {
   const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
 
-  // カード情報入力フォーム作成
+  // カード情報入力フォーム作成 学習メモ
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
@@ -18,9 +18,8 @@ const pay = () => {
         ;
       } else {
         const token = response.id; 
-        console.log(token)
         const tokenObj = `<input value=${token} name="token" type="hidden">`;
-        form.insertAdjacentHTML("beforeend", tokenObj); // トークン情報を持ったオブジェクトをフォームに追加
+        form.insertAdjacentHTML("beforeend", tokenObj); // トークン情報を持ったオブジェクトをフォームに追加 学習メモ
       }
       numberElement.clear();
       expiryElement.clear();
