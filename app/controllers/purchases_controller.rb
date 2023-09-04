@@ -4,10 +4,10 @@ class PurchasesController < ApplicationController
   before_action :set_public_key
 
   def index
-    @purchase_shipping_info= PurchaseShippingInfo.new
+    @purchase_shipping_info = PurchaseShippingInfo.new
     redirect_to_top_page
   end
-  
+
   def create
     @purchase_shipping_info = PurchaseShippingInfo.new(purchase_params)
     if @purchase_shipping_info.valid?
@@ -22,15 +22,15 @@ class PurchasesController < ApplicationController
   private
 
   def redirect_to_sign_in
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
+    return if user_signed_in?
+
+    redirect_to new_user_session_path
   end
 
   def redirect_to_top_page
-    if @item.purchase.present? || current_user == @item.user
-      redirect_to root_path
-    end
+    return unless @item.purchase.present? || current_user == @item.user
+
+    redirect_to root_path
   end
 
   def set_item
@@ -38,7 +38,7 @@ class PurchasesController < ApplicationController
   end
 
   def set_public_key
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def purchase_params
@@ -53,12 +53,11 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_params[:token],
       currency: 'jpy'
     )
   end
-
 end

@@ -27,17 +27,17 @@ RSpec.describe PurchaseShippingInfo, type: :model do
       it 'postal_codeにハイフンが含まれないと保存できない' do
         @purchase_shipping_info.postal_code = '1234567'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Postal code is invalid. Use 3 digits, hyphen, and 4 digits format")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Postal code is invalid. Use 3 digits, hyphen, and 4 digits format')
       end
       it 'postal_codeに数字とハイフン以外が含まれると保存できない' do
         @purchase_shipping_info.postal_code = 'aaa-1234'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Postal code is invalid. Use 3 digits, hyphen, and 4 digits format")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Postal code is invalid. Use 3 digits, hyphen, and 4 digits format')
       end
       it 'postal_codeに全角文字が含まれると保存できない' do
         @purchase_shipping_info.postal_code = '１２３-４５６７'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Postal code is invalid. Use 3 digits, hyphen, and 4 digits format")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Postal code is invalid. Use 3 digits, hyphen, and 4 digits format')
       end
       it 'prefecture_idが空では保存できない' do
         @purchase_shipping_info.prefecture_id = ''
@@ -67,22 +67,22 @@ RSpec.describe PurchaseShippingInfo, type: :model do
       it 'phone_numberに数字以外が含まれると保存できない' do
         @purchase_shipping_info.phone_number = '123-456-7890'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Phone number is invalid. Use 10 or 11 digits without hyphen")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Phone number is invalid. Use 10 or 11 digits without hyphen')
       end
       it 'phone_numberに全角数字が含まれると保存できない' do
         @purchase_shipping_info.phone_number = '１２３４５６７８９０'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Phone number is invalid. Use 10 or 11 digits without hyphen")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Phone number is invalid. Use 10 or 11 digits without hyphen')
       end
       it 'phone_numberが9桁以下では保存できない' do
         @purchase_shipping_info.phone_number = '123456789'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Phone number is invalid. Use 10 or 11 digits without hyphen")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Phone number is invalid. Use 10 or 11 digits without hyphen')
       end
       it 'phone_numberが12桁以上では保存できない' do
         @purchase_shipping_info.phone_number = '123456789012'
         @purchase_shipping_info.valid?
-        expect(@purchase_shipping_info.errors.full_messages).to include("Phone number is invalid. Use 10 or 11 digits without hyphen")
+        expect(@purchase_shipping_info.errors.full_messages).to include('Phone number is invalid. Use 10 or 11 digits without hyphen')
       end
       it 'tokenが空では保存できない' do
         @purchase_shipping_info.token = ''
