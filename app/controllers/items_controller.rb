@@ -11,10 +11,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    return unless !@item.purchase.nil? || (user_signed_in? && current_user.id != @item.user.id)
+
+    redirect_to root_path
   end
 
   def destroy
-    @item.destroy
+    @item.destroy if @item.order.nil? || (user_signed_in? && current_user.id == @item.user.id)
     redirect_to root_path
   end
 
@@ -22,7 +25,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

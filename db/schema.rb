@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_030340) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_01_075227) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -71,6 +71,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_030340) do
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
+  create_table "shipping_infos", charset: "utf8", force: :cascade do |t|
+    t.bigint "purchase_id", null: false
+    t.string "postal_code"
+    t.integer "prefecture_id"
+    t.string "city"
+    t.string "address"
+    t.string "building"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["purchase_id"], name: "index_shipping_infos_on_purchase_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -100,4 +113,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_030340) do
   add_foreign_key "items", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"
+  add_foreign_key "shipping_infos", "purchases"
 end
