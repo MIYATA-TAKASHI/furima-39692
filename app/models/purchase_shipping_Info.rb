@@ -4,7 +4,7 @@ class PurchaseShippingInfo
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Use 3 digits, hyphen, and 4 digits format' }
-    validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Use 10 or 11 digits without hyphen' }

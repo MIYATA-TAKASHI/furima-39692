@@ -1,3 +1,5 @@
 class ShippingInfo < ApplicationRecord
   belongs_to :purchase
-end
+  
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
