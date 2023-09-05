@@ -3,5 +3,4 @@ class ShippingInfo < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
-  
 end
