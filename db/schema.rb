@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_075227) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_030340) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,10 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_075227) do
 
   create_table "items", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.integer "category_id", null: false
-    t.text "description"
-    t.integer "price"
+    t.text "description", null: false
+    t.integer "price", null: false
     t.integer "status_id", null: false
     t.integer "delivery_fee_burden_id", null: false
     t.integer "prefecture_id", null: false
@@ -71,19 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_075227) do
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
-  create_table "shipping_infos", charset: "utf8", force: :cascade do |t|
-    t.bigint "purchase_id", null: false
-    t.string "postal_code"
-    t.integer "prefecture_id"
-    t.string "city"
-    t.string "address"
-    t.string "building"
-    t.string "phone_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["purchase_id"], name: "index_shipping_infos_on_purchase_id"
-  end
-
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -92,13 +79,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_075227) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "kana_last_name"
-    t.string "kana_first_name"
-    t.date "birthdate"
-    t.index ["birthdate"], name: "index_users_on_birthdate"
+    t.string "nickname", null: false
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "kana_last_name", null: false
+    t.string "kana_first_name", null: false
+    t.date "birthdate", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["first_name"], name: "index_users_on_first_name"
     t.index ["kana_first_name"], name: "index_users_on_kana_first_name"
@@ -113,5 +99,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_075227) do
   add_foreign_key "items", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"
-  add_foreign_key "shipping_infos", "purchases"
 end
