@@ -16,10 +16,11 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-  def destroy
-    @item.destroy if @item.order.nil? || (user_signed_in? && current_user.id == @item.user.id)
-    redirect_to root_path
-  end
+def destroy
+  @item.destroy if @item.purchase.nil? || (user_signed_in? && current_user.id == @item.user.id)
+  redirect_to root_path
+end
+
 
   def update
     if @item.update(item_params)
