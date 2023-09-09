@@ -75,10 +75,9 @@ group :development do
   gem 'rubocop', require: false
 end
 
-# このGemはデータベースがPostgreSQLの際に必要なGem
+
 group :production do
   gem 'unicorn', '6.1.0'
-  gem 'pg' 
 end
 
 gem 'devise'
